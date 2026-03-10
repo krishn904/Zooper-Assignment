@@ -1,0 +1,122 @@
+** Q1) Calculate the total premium collected during the year 2024.**
+```sql
+SELECT SUM(Premium) AS Total_Premium_2024
+FROM policy_sales_data;;
+
+** ANSWER- Total_Premium_2024 = 240,000,000 **
+
+**Q2) Calculate total claim cost for each year (2025 and 2026) with a monthly breakdown.**
+**SQL Query**
+
+SELECT 
+    YEAR(Claim_Date) AS Year,
+    MONTH(Claim_Date) AS Month,
+    SUM(Claim_Amount) AS Total_Claim_Cost
+FROM claims_data
+GROUP BY YEAR(Claim_Date), MONTH(Claim_Date)
+ORDER BY Year, Month;
+
+ **ANSWER**
+| Year | Month | Claim Cost |
+| ---- | ----- | ---------- |
+| 2025 | 1     | 32,710,000 |
+| 2025 | 2     | 33,010,000 |
+| 2025 | 3     | 32,700,000 |
+| 2025 | 4     | 33,610,000 |
+| 2025 | 5     | 33,080,000 |
+| 2025 | 6     | 33,050,000 |
+| 2025 | 7     | 32,600,000 |
+| 2025 | 8     | 33,140,000 |
+| 2025 | 9     | 32,470,000 |
+| 2025 | 10    | 32,330,000 |
+| 2025 | 11    | 32,310,000 |
+| 2025 | 12    | 32,430,000 |
+| 2026 | 1     | 52,680,000 |
+| 2026 | 2     | 47,320,000 |
+
+**Q3) Calculate the claim cost to premium ratio for each policy tenure.**
+**SQL Query**
+
+SELECT 
+    p.Policy_Tenure,
+    SUM(c.Claim_Amount) AS Total_Claims,
+    SUM(p.Premium) AS Total_Premium,
+    SUM(c.Claim_Amount) / SUM(p.Premium) AS Claim_Premium_Ratio
+FROM policy_sales_data p
+LEFT JOIN claims_data c
+ON p.Customer_ID = c.Customer_ID
+GROUP BY p.Policy_Tenure
+ORDER BY p.Policy_Tenure;
+
+**ANSWER**
+| Tenure | Claims      | Premium     | Ratio    |
+| ------ | ----------- | ----------- | -------- |
+| 1 year | 78,650,000  | 20,000,000  | **3.93** |
+| 2 year | 117,650,000 | 60,000,000  | **1.96** |
+| 3 year | 158,250,000 | 120,000,000 | **1.32** |
+| 4 year | 138,890,000 | 40,000,000  | **3.47** |
+
+**3 year tenure is most profitable**
+
+**Q4) Calculate claim cost to premium ratio by the month policy was sold.**
+**SQL Query**
+
+SELECT 
+    MONTH(p.Policy_Purchase_Date) AS Sale_Month,
+    SUM(c.Claim_Amount) / SUM(p.Premium) AS Claim_Premium_Ratio
+FROM policy_sales_data p
+LEFT JOIN claims_data c
+ON p.Customer_ID = c.Customer_ID
+GROUP BY MONTH(p.Policy_Purchase_Date)
+ORDER BY Sale_Month;
+
+**Answer**
+| Month | Ratio |
+| ----- | ----- |
+| Jan   | 2.02  |
+| Feb   | 2.15  |
+| Mar   | 2.02  |
+| Apr   | 2.15  |
+| May   | 2.06  |
+| Jun   | 2.09  |
+| Jul   | 2.00  |
+| Aug   | 2.06  |
+| Sep   | 2.07  |
+| Oct   | 2.02  |
+| Nov   | 2.07  |
+| Dec   | 1.98  |
+
+**Q5) If every vehicle that has not yet made a claim eventually files exactly one claim, estimate the total potential claim liability.**
+**SQL Query**
+
+SELECT 
+    (COUNT(DISTINCT p.Customer_ID) - COUNT(DISTINCT c.Customer_ID)) * 10000 
+    AS Potential_Claim_Liability
+FROM policy_sales_data p
+LEFT JOIN claims_data c
+ON p.Customer_ID = c.Customer_ID;
+
+**ANSWER**
+Total Vehicles = 1,000,000
+Vehicles Already Claimed = 48,935
+Vehicles Without Claim = 951,065
+951,065 × 10,000 = ₹9,510,650,000
+So future liability ≈ ₹951 Crore
+
+**Q6) Premium earned until Feb 28, 2026 using daily premium method**
+**SQL Query**
+
+SELECT 
+SUM(
+    (Premium / (Policy_Tenure * 365)) *
+    DATEDIFF(
+        LEAST(Policy_End_Date, '2026-02-28'),
+        Policy_Start_Date
+    )
+) AS Earned_Premium
+FROM policy_sales_data
+WHERE Policy_Start_Date < '2026-02-28';
+
+**Answer**
+Earned Premium ≈ ₹65,903,330
+So the company has earned about ₹6.59 Crore by Feb 28, 2026.
