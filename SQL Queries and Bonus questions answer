@@ -1,0 +1,10 @@
+# SQL Analysis for Zopper Assignment
+
+## Question 1
+
+**Q1. What is the total number of policies sold by region?**
+
+```sql
+SELECT region, COUNT(policy_id) AS total_policies
+FROM policy_sales_data
+GROUP BY region;
