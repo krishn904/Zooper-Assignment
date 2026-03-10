@@ -108,8 +108,11 @@ Using GitHub for project documentation and sharing
 
 policy_sales_data.csv  
 claims_data.csv  
-SQL_queries.md  
-Excel_dashboard.xlsx  
+SQL_queries.md
+Bonus questions Answer
+Assignment Summary and insights pdf
+Excel_dashboard for claims distribution
+Optional visulization excel dashboard
 README.md
 
 Each file in this repository contributes to the overall analysis and documentation of the assignment.
