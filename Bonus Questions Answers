@@ -1,0 +1,53 @@
+**Q1) Which policy tenure appears most profitable and why? **
+
+**Answer**
+Results from your dataset
+Policy Tenure	Premium	Claims	Loss Ratio
+1 year	₹20,000,000	₹78,650,000	3.93
+2 years	₹60,000,000	₹117,650,000	1.96
+3 years	₹120,000,000	₹158,250,000	1.32
+4 years	₹40,000,000	₹138,890,000	3.47
+**Final answer-**
+As observed from the table above-3-year policy tenure has the lowest loss ratio (1.32).Lower loss ratio = higher profitability
+3-year policies are the most profitable because they generate the highest premium relative to claims paid. 
+Longer tenure spreads the risk while generating higher premium income.
+
+**Q2) Build a simple dashboard showing claim trends by month**
+
+**Answer**
+I have already created it by the name - claims_dashboard.
+**Final Observation-**
+ In 2025-
+Claims are fairly stable across months.
+Average monthly claims ≈ ₹32M–₹33M.
+In 2026-
+Claims spike in Jan–Feb.
+This happens because 10% of 4-year tenure policies file claims in this period.
+
+**Q3)  Estimate the Loss Ratio for the portfolio **
+
+**Answer**.
+Total Premium collected:₹240,000,000
+Total Claims paid:₹493,440,000
+Loss Ratio = 493,440,000 / 240,000,000
+           = 2.056
+Loss Ratio is 205.6%
+**Final Observation-**
+This portfolio is NOT profitable.
+For every ₹1 premium collected
+Company pays ₹2.06 in claims
+This means the company is operating at a large underwriting loss.
+
+**Q4) If claim frequency increases by 5% annually, estimate future profitability impact**
+
+**Answer**
+If claim increases then -> New Claims = Current Claims × 1.05
+                          493,440,000 × 1.05
+                          = ₹518,112,000
+New Loss Ratio will be -> 518,112,000 / 240,000,000
+                         = 2.16 (Loss Ratio will increase upto 216%)
+**Final observation**
+If claim frequency rises 5% annually:
+Losses will increase rapidly.
+Profitability will deteriorate in further.
+
