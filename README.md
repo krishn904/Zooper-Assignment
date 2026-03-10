@@ -106,15 +106,16 @@ Using GitHub for project documentation and sharing
 
 **Repository Structure**
 
-policy_sales_data.csv  
-claims_data.csv  
-SQL_queries.md
-Bonus questions Answer
-Assignment Summary and insights pdf
-Excel_dashboard for claims distribution
-Optional visulization excel dashboard
-README.md
+## Project Files
 
+- policy_sales_data.csv  
+- claims_data.csv  
+- SQL_queries.md  
+- Bonus_Questions_Answer.pdf  
+- Assignment_Summary_and_Insights.pdf  
+- Excel_Dashboard_for_Claims_Distribution.xlsx  
+- Optional_Visualization_Excel_Dashboard.xlsx  
+- README.md
 Each file in this repository contributes to the overall analysis and documentation of the assignment.
 
 ---
